@@ -1,0 +1,38 @@
+<section id="contact">
+  <div class="form">
+    <form [formGroup]="contactusForm" (ngSubmit)="sendMessage()">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" name="name" placeholder="Your Name"/>
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" name="email" placeholder="Your Email" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <input type="number" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" name="phone" placeholder="Phone Number" />
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">Phone Number is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <textarea class="form-control" formControlName="message" name="message" rows="5" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" placeholder="Message"></textarea>
+          <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+              <div *ngIf="f.message.errors.required">Message is required</div>
+              <div *ngIf="f.message.errors.minlength">Message must be at least 10 characters</div>
+          </div>
+      </div>
+      <div class="mb-3" *ngIf='successmsg'>
+          <div class="sent-message">Your message has been sent. Thank you!</div>
+      </div>
+      <div class="text-center">
+          <button class="btn btn-get">Send Message</button>
+        </div>
+    </form>
+  </div>
+</section>
